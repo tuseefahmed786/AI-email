@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "universal-mail",
+  "version": "0.1.0",
+  "description": "Universal Mail dev plugin — bundles the agents, skills, hooks, and slash commands needed to extend the AI-first email client.",
+  "author": "Universal Mail team",
+  "license": "MIT",
+  "agents": [
+    "../../agents/mail-provider-engineer.md",
+    "../../agents/ai-features-engineer.md",
+    "../../agents/pwa-ui-engineer.md",
+    "../../agents/test-engineer.md",
+    "../../agents/security-reviewer.md"
+  ],
+  "skills": [
+    "../../skills/email-thread-summarize",
+    "../../skills/reply-draft",
+    "../../skills/priority-score",
+    "../../skills/new-mail-provider"
+  ],
+  "commands": [
+    "../../commands/new-provider.md",
+    "../../commands/ai-eval.md",
+    "../../commands/ship.md"
+  ],
+  "hooks": {
+    "PostToolUse": [
+      { "matcher": "Edit|Write", "command": "../../hooks/post-edit-typecheck.sh" }
+    ],
+    "PreToolUse": [
+      { "matcher": "Write", "command": "../../hooks/forbid-secrets-in-source.sh" }
+    ],
+    "Stop": [
+      { "command": "../../hooks/on-stop-summary.sh" }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm run*)",
+      "Bash(npx tsc*)",
+      "Bash(npx vitest*)",
+      "Bash(npx playwright*)"
+    ]
+  }
+}

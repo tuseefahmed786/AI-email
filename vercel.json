@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "installCommand": "npm install",
+  "regions": ["iad1"],
+  "functions": {
+    "src/app/api/mail/list/route.ts": { "maxDuration": 30 },
+    "src/app/api/mail/thread/[id]/route.ts": { "maxDuration": 30 },
+    "src/app/api/mail/search/route.ts": { "maxDuration": 30 },
+    "src/app/api/ai/summarize/route.ts": { "maxDuration": 60 },
+    "src/app/api/ai/draft/route.ts": { "maxDuration": 60 },
+    "src/app/api/ai/prioritize/route.ts": { "maxDuration": 60 }
+  }
+}

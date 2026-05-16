@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 250 250 252;
+  --surface: 255 255 255;
+  --surface2: 245 246 250;
+  --border: 226 228 234;
+  --text: 17 24 39;
+  --muted: 107 114 128;
+  --brand: 79 70 229;
+  --brand-fg: 255 255 255;
+  --danger: 220 38 38;
+  --warn: 217 119 6;
+  --good: 22 163 74;
+}
+
+.dark {
+  --bg: 10 13 20;
+  --surface: 16 20 30;
+  --surface2: 22 27 38;
+  --border: 38 44 58;
+  --text: 230 233 240;
+  --muted: 145 152 168;
+  --brand: 129 140 248;
+  --brand-fg: 17 24 39;
+  --danger: 248 113 113;
+  --warn: 245 158 11;
+  --good: 74 222 128;
+}
+
+html, body {
+  background: rgb(var(--bg));
+  color: rgb(var(--text));
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) {
+    --bg: 10 13 20;
+    --surface: 16 20 30;
+    --surface2: 22 27 38;
+    --border: 38 44 58;
+    --text: 230 233 240;
+    --muted: 145 152 168;
+    --brand: 129 140 248;
+    --brand-fg: 17 24 39;
+    --danger: 248 113 113;
+    --warn: 245 158 11;
+    --good: 74 222 128;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors select-none;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-brandFg hover:opacity-90 active:opacity-80;
+  }
+  .btn-ghost {
+    @apply btn text-text hover:bg-surface2;
+  }
+  .btn-danger {
+    @apply btn text-danger hover:bg-danger/10;
+  }
+  .card {
+    @apply bg-surface border border-border rounded-xl2;
+  }
+  .input {
+    @apply w-full rounded-xl border border-border bg-surface px-4 py-2.5 text-sm text-text placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-brand/40;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full bg-surface2 px-2.5 py-1 text-xs text-muted;
+  }
+  .skeleton {
+    @apply animate-pulse rounded-md bg-surface2;
+  }
+}
+
+.email-html {
+  /* Render received HTML at a sane scale on mobile without breaking links. */
+  max-width: 100%;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.email-html img { max-width: 100%; height: auto; }
+.email-html a { color: rgb(var(--brand)); text-decoration: underline; }
+.email-html blockquote {
+  border-left: 3px solid rgb(var(--border));
+  padding-left: 0.75rem;
+  color: rgb(var(--muted));
+  margin: 0.5rem 0;
+}
